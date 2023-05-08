@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>{{ data.chapter ? "Edit Chapter" : "Add Chapter" }}</h1>
+<div mat-dialog-content class="">
+  <div class="row mt-2">
+    <div class="col">
+      <form [formGroup]="chapterForm">
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Title </mat-label>
+              <input matInput formControlName="title" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Description </mat-label>
+              <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <div class="row w-100 mb-2" style="padding-left: 1rem">
+    <div class="col">
+      <button
+        mat-raised-button class="w-100"
+        [disabled]="chapterForm.invalid"
+        (click)="saveChapter(chapterForm.value)"
+        color="primary"
+      >
+        Save
+      </button>
+    </div>
+    <div class="col">
+      <button mat-stroked-button class="w-100" (click)="dialogRef.close(null)" color="warn">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

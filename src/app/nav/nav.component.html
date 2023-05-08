@@ -1,0 +1,41 @@
+<mat-drawer-container class="nav-container">
+  <mat-drawer
+    mode="side"
+    [opened]="!(activeNav?.link === 'login' || activeNav?.txt === 'Register')"
+    style="background-color: #fafafa; border: none"
+    class="side-nav"
+  >
+    <mat-list-item class="pt-2"
+      role="listitem"
+      (click)="nav({ txt: '', link: 'dashboard', icon: '' })"
+    >
+      <h3>LMS</h3>
+    </mat-list-item>
+    <mat-list role="list">
+      <div
+        style="min-height: 50px; padding: 2% 5%"
+        role="listitem"
+        *ngFor="let navItem of routes"
+        (click)="nav(navItem)"
+      >
+        <div
+          class="nav-item"
+          [ngClass]="activeNav?.link === navItem.link ? 'is-active' : ''"
+        >
+          <mat-icon
+            [svgIcon]="navItem.icon"
+            aria-label="Example thumbs up SVG icon"
+          ></mat-icon>
+          <div slot="end">
+            {{ navItem.txt }}
+          </div>
+        </div>
+      </div>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content style="background-color: #fafafa" class="p-2">
+    <h3>{{ activeNav?.txt === 'Logout' ? 'Login' :  activeNav?.txt}}</h3>
+    <mat-divider></mat-divider>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

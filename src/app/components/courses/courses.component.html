@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-12">
+    <button
+      mat-raised-button
+      color="primary"
+      class="my-2"
+      (click)="addCourse()"
+    >
+      Add Course
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-3 mb-3" *ngFor="let course of courses">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title
+          ><b>{{ course.title }}</b></mat-card-title
+        >
+        <mat-card-subtitle class="mb-2">
+          <small
+          >Instructors: {{ course.instructors?.length || 0 }}</small
+        >
+        |
+        <small>Students: {{ course.students?.length || 0 }}</small>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="../.././../assets/course-placeholder.jpg"
+        alt="Photo of a {{ course.title }}"
+      />
+      <mat-card-content>
+        <p class="my-2 auto-truncate">
+          {{ course.description }}
+        </p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="row w-100">
+          <div class="col">
+            <button
+              mat-stroked-button
+              color="primary"
+              class="w-100 m-2"
+              (click)="goToDetails(course)"
+            >
+              View Details
+            </button>
+          </div>
+          <!-- <div class="col">
+            <button mat-stroked-button color="primary" class="w-100 m-2">
+              Add Instructors
+            </button>
+          </div> -->
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

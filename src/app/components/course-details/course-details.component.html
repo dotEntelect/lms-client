@@ -1,0 +1,160 @@
+<div class="row">
+  <div class="col-sm-12 col-md-4 mt-4">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title
+          ><b>{{ course?.title }}</b></mat-card-title
+        >
+        <mat-card-subtitle class="mb-2">
+          <div class="row">
+            <div class="col">
+              <button
+                mat-button
+                style="font-size: small"
+                color="primary"
+                (click)="linkInstructorsStudents()"
+              >
+                <small
+                  >Instructors: {{ course?.instructors?.length || 0 }}</small
+                >
+                |
+                <small>Students: {{ course?.students?.length || 0 }}</small>
+              </button>
+            </div>
+          </div>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="../.././../assets/course-placeholder.jpg"
+        alt="Photo of a {{ course?.title }}"
+      />
+      <mat-card-content>
+        <p class="my-2">
+          {{ course?.description }}
+        </p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="row w-100">
+          <div class="col">
+            <button
+              mat-stroked-button
+              color="primary"
+              class="w-100 m-2"
+              (click)="editCourse()"
+            >
+              Edit Course Details
+            </button>
+          </div>
+          <!-- <div class="col">
+              <button mat-stroked-button color="primary" class="w-100 m-2">
+                Add Instructors
+              </button>
+            </div> -->
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="col-sm-12 col-md-8 mt-4">
+    <mat-card class="h-100">
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab label="Chapters">
+            <div class="demo-button-container mt-3">
+              <button
+                mat-stroked-button
+                color="primary"
+                (click)="addEditChapter(null)"
+                class="demo-button"
+              >
+                Add Chapter
+              </button>
+            </div>
+
+            <table
+              mat-table
+              [dataSource]="chapterDataSource"
+              class="mat-elevation-z8 demo-table"
+            >
+              <!-- Position Column -->
+              <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef>No.</th>
+                <td mat-cell *matCellDef="let element; let i = index">
+                  {{ i + 1 }}
+                </td>
+              </ng-container>
+
+              <!-- Title Column -->
+              <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>Title</th>
+                <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+              </ng-container>
+
+              <!-- Added by Column -->
+              <ng-container matColumnDef="addedBy">
+                <th mat-header-cell *matHeaderCellDef>Added By</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.addedBy }}
+                </td>
+              </ng-container>
+
+              <!-- Lessons Count Column -->
+              <ng-container matColumnDef="lessonCount">
+                <th mat-header-cell *matHeaderCellDef>Lessons</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.lessons?.length || 0 }}
+                </td>
+              </ng-container>
+
+              <!-- Function Column -->
+              <ng-container matColumnDef="functions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                  <button
+                    mat-icon-button
+                    [matMenuTriggerFor]="menu"
+                    aria-label="Example icon-button with a menu"
+                  >
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="addEditChapter(element)">
+                      Edit
+                    </button>
+                    <button mat-menu-item (click)="navTo('lessons')">
+                      View Lessons
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+
+              <tr
+                mat-header-row
+                *matHeaderRowDef="displayedChapterColumns"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: displayedChapterColumns"
+              ></tr>
+            </table>
+          </mat-tab>
+          <mat-tab label="Quizzes">
+            <div class="under-construction">
+              <div class="d-flex justify-content-center py-5">
+                <h3>Under Contruction</h3>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Assignments">
+            <div class="under-construction">
+              <div class="d-flex justify-content-center py-5">
+                <h3>Under Contruction</h3>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

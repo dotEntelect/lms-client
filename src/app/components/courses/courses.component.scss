@@ -1,0 +1,9 @@
+.auto-truncate {
+  flex: 1;
+
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 50px;
+}
